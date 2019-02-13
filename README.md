@@ -7,14 +7,16 @@ Github is a way to keep all team members in a project's files in sync. As well a
 [This video] explains how to work with Github inside of eclipse. Since I already have a repository started all you have to do is select **File>Import>Git>Project From Git>Clone URI** and copy the clone link from the github page. After everyone has an account I will have to add you as a contributor to the project to give you permission to commit to the project
 
 # Keywords
-Repository - The main project folder
-Commit - Save (You only have to commit when you do a significant cahnge that you want to publish, you can still do normal saving to the computer)
-Push - Upload (It is recomended you use the Commit and Push option)
-Pull - Download (Do this everytime you start working on the project to have the most up to date version
-Branch - A seperate copy of the main project that can be worked on without effecting or breaking the master version
-Merge - To combine one branch into another
-Fork - A copy of the repository for an outside user who is not a trusted contributor (This is used for people working on an open-source project)
-Pull Request - A request from an outside user to the contributors of a project to pull their forked version and add it to the original repository (An example of this is somebody creating a feature in an open-source project and asking the creators to use his submissions)
+|Keyword | Meaning|
+| ------ | ------|
+|Repository|The main project folder|
+|Commit|Save (You only have to commit when you do a significant cahnge that you want to publish, you can still do normal saving to the |computer)|
+|Push|Upload (It is recomended you use the Commit and Push option)|
+|Pull|Download (Do this everytime you start working on the project to have the most up to date version|
+|Branch|A seperate copy of the main project that can be worked on without effecting or breaking the master version|
+|Merge|To combine one branch into another|
+|Fork|A copy of the repository for an outside user who is not a trusted contributor (This is used for people working on an open-source project)|
+|Pull Request|A request from an outside user to the contributors of a project to pull their forked version and add it to the original repository (An example of this is somebody creating a feature in an open-source project and asking the creators to use his submissions)|
 
 # Branch Layout
 What I want to try is to use the Master Branch only for approved and final submission/checkpoint versions. Each team will have their own branch to work in for their portion. If any large features are created it might not be a bad idea to create a sub branch off of the team branch. After the feature is created it can be merged back into the team branch. 
