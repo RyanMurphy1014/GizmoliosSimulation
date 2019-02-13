@@ -2,7 +2,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Order class contains information on the order's arrival Date and time, type of gismolio, and its requested finish time
+ * Order class contains information on the order's arrival Date and time,
+ * type of gismolio, and its requested finish time.
  * @author ryanm
  *
  */
@@ -58,6 +59,7 @@ public class Order {
 	public Gizmolios getType() {
 		return type;
 	}
+
 	public void setType(Gizmolios type) {
 		this.type = type;
 	}

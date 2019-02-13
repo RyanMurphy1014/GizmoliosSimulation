@@ -1,5 +1,5 @@
 /**
- * Class to hold information about the Gizmolios. Includes type, and customer ID
+ * Class to hold information about the Gizmolios. Includes type, and customer ID.
  * @author ryanm
  *
  */

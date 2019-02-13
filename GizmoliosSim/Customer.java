@@ -3,7 +3,7 @@ import java.time.LocalTime;
 
 /**
 	Class that holds information for Customer
-	Includes First Name, Last Name, order ID, time, and penalty
+	Includes First Name, Last Name, order ID, time, and penalty.
 	@author ryanm
 */
 public class Customer {

@@ -1,5 +1,5 @@
 /**
- * Class to hold information on manufacturing machine
+ * Class to hold information on manufacturing machine.
  * @author ryanm
  *
  */
