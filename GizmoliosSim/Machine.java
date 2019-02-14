@@ -7,7 +7,7 @@ public class Machine {
 	//I'm not adding type yet because I thought machines can make any type of Gizmolios
 	private boolean status;
 	private int waitTime;
-	private int iD;
+	private Order currentOrder;
 
 
 	/**
@@ -15,17 +15,17 @@ public class Machine {
 	 * @param waitTime - How many hours until machine is ready
 	 * @param iD - Id of order it is currently working on
 	 */
-	public Machine(boolean status, int waitTime, int iD) {
+	public Machine(boolean status, int waitTime, Order order) {
 		super();
 		this.status = status;
 		this.waitTime = waitTime;
-		this.iD = iD;
+		this.currentOrder = order;
 	}
 
 	public Machine(){
 		this.status = false;
 		this.waitTime = 1;
-		this.iD = -999;
+		this.currentOrder = new Order();
 	}
 
 	public boolean isStatus() {
@@ -40,10 +40,10 @@ public class Machine {
 	public void setWaitTime(int waitTime) {
 		this.waitTime = waitTime;
 	}
-	public int getiD() {
-		return iD;
+	public Order getCurrentOrder() {
+		return currentOrder;
 	}
-	public void setiD(int iD) {
-		this.iD = iD;
+	public void setCurrentOrder(Order order) {
+		this.currentOrder = order;
 	}
 }

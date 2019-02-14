@@ -7,20 +7,20 @@ public class Gizmolios {
 	private String type;
 	//I'm not sure what type of data start process
 	//and end process is as per the blueprint picture.
-	private Customer id;
+	private Customer customer;
 
 	/**
 	 * @param type - Type of Gizmolio
-	 * @param id - Customer ID
+	 * @param customer - Customer ID
 	 */
-	public Gizmolios(String type, Customer id) {
+	public Gizmolios(String type, Customer customer) {
 		this.type = type;
-		this.id = id;
+		this.customer = customer;
 	}
 
 	public Gizmolios(){
 		this.type = "";
-		this.id = null;
+		this.customer = null;
 	}
 
 
@@ -30,10 +30,10 @@ public class Gizmolios {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Customer getId() {
-		return id;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setId(Customer id) {
-		this.id = id;
+	public void setCustomer(Customer id) {
+		this.customer = id;
 	}
 }

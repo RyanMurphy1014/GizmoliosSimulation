@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public class Customer {
 	private String firstName;
 	private String lastName;
-	private int iD;
+	private Order order;
 	private LocalTime orderTime;
 	private double penalty;
 
@@ -21,10 +21,10 @@ public class Customer {
 	 * @param time - Time of order
 	 * @param penalty - Late penalty
 	 */
-	public Customer(String firstName, String lastName, int iD, LocalTime time, double penalty){
+	public Customer(String firstName, String lastName, Order order, LocalTime time, double penalty){
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.iD = iD;
+		this.order = order;
 		this.orderTime = time;
 		this.penalty = penalty;
 	}
@@ -35,7 +35,7 @@ public class Customer {
 	public Customer(){
 		this.firstName = "John";
 		this.lastName = "Doe";
-		this.iD = -999;
+		this.order = new Order();
 		this.orderTime = LocalTime.now();
 		this.penalty = -999;
 	}
@@ -52,11 +52,11 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getiD() {
-		return iD;
+	public Order getOrder() {
+		return order;
 	}
-	public void setiD(int iD) {
-		this.iD = iD;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 	public LocalTime getTime() {
 		return orderTime;

@@ -8,7 +8,7 @@ import java.time.LocalTime;
  *
  */
 public class Order {
-	private int iD;
+	private Customer customer;
 	private LocalDate arrivalDate;
 	private LocalTime arrivalTime;
 	private Gizmolios type;
@@ -16,14 +16,14 @@ public class Order {
 
 	/**
 	 *
-	 * @param iD - Order ID
+	 * @param customer - Order ID
 	 * @param arrivalDate - Arrival Date
 	 * @param arrivalTime - Arrival Time
 	 * @param type - Type of gizmolios
 	 * @param requestedTime - requested finish time
 	 */
-	public Order(int iD, LocalDate arrivalDate, LocalTime arrivalTime, Gizmolios type, LocalTime requestedTime) {
-		this.iD = iD;
+	public Order(Customer customer, LocalDate arrivalDate, LocalTime arrivalTime, Gizmolios type, LocalTime requestedTime) {
+		this.customer = customer;
 		this.arrivalDate = arrivalDate;
 		this.arrivalTime = arrivalTime;
 		this.type = type;
@@ -31,18 +31,18 @@ public class Order {
 	}
 
 	public Order(){
-		this.iD = -999;
+		this.customer = new Customer();
 		this.arrivalDate = LocalDate.now();
 		this.arrivalTime = LocalTime.now();
 		this.type = new Gizmolios();
 		this.requestedTime = LocalTime.now();
 	}
 
-	public int getiD() {
-		return iD;
+	public Customer getiD() {
+		return customer;
 	}
-	public void setiD(int iD) {
-		this.iD = iD;
+	public void setiD(Customer customer) {
+		this.customer = customer;
 	}
 	public LocalDate getArrivalDate() {
 		return arrivalDate;
