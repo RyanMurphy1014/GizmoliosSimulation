@@ -13,6 +13,12 @@ public class Order {
 	private LocalTime arrivalTime;
 	private Gizmolios type;
 	private LocalTime requestedTime;
+	private LocalDate requestedDate;
+	private LocalDate startingDate;
+	private LocalDate endingDate;
+	private LocalTime startingTime;
+	private LocalTime endingTime;
+	
 
 	/**
 	 *
@@ -29,6 +35,25 @@ public class Order {
 		this.type = type;
 		this.requestedTime = requestedTime;
 	}
+	
+	
+
+	public Order(Customer customer, LocalDate arrivalDate, LocalTime arrivalTime, Gizmolios type,
+			LocalTime requestedTime, LocalDate requestedDate, LocalDate startingDate, LocalDate endingDate,
+			LocalTime startingTime, LocalTime endingTime) {
+		super();
+		this.customer = customer;
+		this.arrivalDate = arrivalDate;
+		this.arrivalTime = arrivalTime;
+		this.type = type;
+		this.requestedTime = requestedTime;
+		this.requestedDate = requestedDate;
+		this.startingDate = startingDate;
+		this.endingDate = endingDate;
+		this.startingTime = startingTime;
+		this.endingTime = endingTime;
+	}
+
 
 	public Order(){
 		this.customer = new Customer();
@@ -36,12 +61,17 @@ public class Order {
 		this.arrivalTime = LocalTime.now();
 		this.type = new Gizmolios();
 		this.requestedTime = LocalTime.now();
+		this.requestedDate = LocalDate.now();
+		this.startingDate = LocalDate.now();
+		this.endingDate = LocalDate.now();
+		this.startingTime = LocalTime.now();
+		this.endingTime = LocalTime.now();
 	}
 
-	public Customer getiD() {
+	public Customer getCustomer() {
 		return customer;
 	}
-	public void setiD(Customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 	public LocalDate getArrivalDate() {
@@ -69,4 +99,46 @@ public class Order {
 	public void setRequestedTime(LocalTime requestedTime) {
 		this.requestedTime = requestedTime;
 	}
+
+	public LocalDate getRequestedDate() {
+		return requestedDate;
+	}
+
+	public void setRequestedDate(LocalDate requestedDate) {
+		this.requestedDate = requestedDate;
+	}
+
+	public LocalDate getStartingDate() {
+		return startingDate;
+	}
+
+	public void setStartingDate(LocalDate startingDate) {
+		this.startingDate = startingDate;
+	}
+
+	public LocalDate getEndingDate() {
+		return endingDate;
+	}
+
+	public void setEndingDate(LocalDate endingDate) {
+		this.endingDate = endingDate;
+	}
+
+	public LocalTime getStartingTime() {
+		return startingTime;
+	}
+
+	public void setStartingTime(LocalTime startingTime) {
+		this.startingTime = startingTime;
+	}
+
+	public LocalTime getEndingTime() {
+		return endingTime;
+	}
+
+	public void setEndingTime(LocalTime endingTime) {
+		this.endingTime = endingTime;
+	}
+	
+	
 }

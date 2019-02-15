@@ -4,7 +4,7 @@
  *
  */
 public class Machine {
-	//I'm not adding type yet because I thought machines can make any type of Gizmolios
+	
 	private boolean status;
 	private int waitTime;
 	private Order currentOrder;
