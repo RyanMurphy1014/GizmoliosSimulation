@@ -37,29 +37,36 @@ public class Customer {
 		this.penalty = 0;
 	}
 
-	public String getcustName() {
-		return custName;
-	}
-	public void setcustName(String firstName) {
-		this.custName = firstName;
-	}
 	
-	/*public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
-	}*/
 	public LocalTime getTime() {
 		return orderTime;
 	}
 	public void setTime(LocalTime time) {
 		this.orderTime = time;
 	}
+
+	public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+	public LocalTime getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(LocalTime orderTime) {
+		this.orderTime = orderTime;
+	}
+
 	public double getPenalty() {
 		return penalty;
 	}
+
 	public void setPenalty(double penalty) {
 		this.penalty = penalty;
 	}
+	
 }

@@ -132,13 +132,20 @@ public class Order {
 		this.startingTime = startingTime;
 	}
 
+
+
 	public LocalTime getEndingTime() {
 		return endingTime;
 	}
 
+
+
 	public void setEndingTime(LocalTime endingTime) {
 		this.endingTime = endingTime;
 	}
+
+	
+	
 	
 	
 }

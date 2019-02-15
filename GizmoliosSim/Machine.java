@@ -40,10 +40,13 @@ public class Machine {
 	public void setWaitTime(int waitTime) {
 		this.waitTime = waitTime;
 	}
+
 	public Order getCurrentOrder() {
 		return currentOrder;
 	}
-	public void setCurrentOrder(Order order) {
-		this.currentOrder = order;
+
+	public void setCurrentOrder(Order currentOrder) {
+		this.currentOrder = currentOrder;
 	}
+	
 }

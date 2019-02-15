@@ -6,8 +6,8 @@
 public class Gizmolios {
 	private String type;
 	//I'm not sure what type of data start process
-	//and end process is as per the blueprint picture.
-	//private Customer customer;
+		//and end process is as per the blueprint picture.
+		//private Customer customer;
 
 	/**
 	 * @param type - Type of Gizmolio
