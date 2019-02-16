@@ -3,22 +3,19 @@ import java.time.LocalTime;
 
 /**
 	Class that holds information for Customer
-	Includes First Name, Last Name, order ID, time, and penalty.
+	Includes Customer Name, Order Time, and Penalty
 	@author ryanm
 */
 public class Customer {
 	private String custName;
-	//private Order order;
 	private LocalTime orderTime;
 	private double penalty;
 
 	/**
 	 * Constructor
-	 * @param firstName - First Name
-	 * @param lastName - Last Name
-	 * @param iD - Order ID
-	 * @param time - Time of order
-	 * @param penalty - Late penalty
+	 * @param cName - Customer Name
+	 * @param time - Order Time
+	 * @param penalty - Penalty for late production
 	 */
 	public Customer(String cName, LocalTime time, double penalty){
 		this.custName = cName;

@@ -1,5 +1,6 @@
 /**
- * Class to hold information on manufacturing machine.
+ * Class to hold information on the manufacturing machine. Includes status of if the machine is running. How long of a
+ * wait it needs between orders, and the current order it is manufacturing.
  * @author ryanm
  *
  */
@@ -13,7 +14,7 @@ public class Machine {
 	/**
 	 * @param status - If the machine is running or not
 	 * @param waitTime - How many hours until machine is ready
-	 * @param iD - Id of order it is currently working on
+	 * @param Order - Order it is currently working on
 	 */
 	public Machine(boolean status, int waitTime, Order order) {
 		super();
@@ -21,17 +22,19 @@ public class Machine {
 		this.waitTime = waitTime;
 		this.currentOrder = order;
 	}
-
+	/**
+	 * Default Constructor
+	 */
 	public Machine(){
 		this.status = false;
 		this.waitTime = 1;
 		this.currentOrder = new Order();
 	}
 
-	public boolean isStatus() {
+	public boolean isRunning() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setRunningStatus(boolean status) {
 		this.status = status;
 	}
 	public int getWaitTime() {

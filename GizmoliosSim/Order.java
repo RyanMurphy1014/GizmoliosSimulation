@@ -2,8 +2,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Order class contains information on the order's arrival Date and time,
- * type of gismolio, and its requested finish time.
+ * Order class contains information on the order's Date and time for its arrival, requested finish, start of production
+ * and end of production, as well as the Customer of the order and the type of Gizmolio being made.
  * @author ryanm
  *
  */
@@ -19,29 +19,22 @@ public class Order {
 	private LocalTime startingTime;
 	private LocalTime endingTime;
 	
-
 	/**
-	 *
-	 * @param customer - Order ID
-	 * @param arrivalDate - Arrival Date
-	 * @param arrivalTime - Arrival Time
-	 * @param type - Type of gizmolios
-	 * @param requestedTime - requested finish time
+	 * 
+	 * @param customer - Customer who placed the order
+	 * @param arrivalDate - Date the order was placed
+	 * @param arrivalTime - Time the order was placed
+	 * @param type - Type of Gizmolio being made
+	 * @param requestedTime - Time when the order is requested to be finished
+	 * @param requestedDate - Date when the order is requested to be finished
+	 * @param startingDate - Date when the order beings manufacturing.
+	 * @param endingDate - Date when the order is completed
+	 * @param startingTime - Time when the order is started
+	 * @param endingTime - Time when the order is finished
 	 */
-	public Order(Customer customer, LocalDate arrivalDate, LocalTime arrivalTime, Gizmolios type, LocalTime requestedTime) {
-		this.customer = customer;
-		this.arrivalDate = arrivalDate;
-		this.arrivalTime = arrivalTime;
-		this.type = type;
-		this.requestedTime = requestedTime;
-	}
-	
-	
-
 	public Order(Customer customer, LocalDate arrivalDate, LocalTime arrivalTime, Gizmolios type,
 			LocalTime requestedTime, LocalDate requestedDate, LocalDate startingDate, LocalDate endingDate,
 			LocalTime startingTime, LocalTime endingTime) {
-		super();
 		this.customer = customer;
 		this.arrivalDate = arrivalDate;
 		this.arrivalTime = arrivalTime;
@@ -54,7 +47,9 @@ public class Order {
 		this.endingTime = endingTime;
 	}
 
-
+	/**
+	 * Default Constructor
+	 */
 	public Order(){
 		this.customer = new Customer();
 		this.arrivalDate = LocalDate.now();
