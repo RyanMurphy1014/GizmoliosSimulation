@@ -13,6 +13,8 @@ public class GizmoliosSimLauncher {
 		for(int i = 0; i < orderList.size(); i++){
 			System.out.println("Order #" + (i + 1) + " " + orderList.get(i));
 		}
-		
+		System.exit(0) 
+		//There is a bug where the program won't terminate
+		//Likely due to the bufferedreader openRead() method in the processing class
 	}
 }
