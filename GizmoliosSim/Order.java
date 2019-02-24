@@ -10,7 +10,7 @@ import java.time.LocalTime;
  * @author ryanm
  *
  */
-public class Order {
+public class Order implements Comparable{
 	private Customer customer;
 	private LocalDate arrivalDate;
 	private LocalTime arrivalTime;
@@ -143,6 +143,23 @@ public class Order {
 	}
 
 	
+
+	@Override
+	public int compareTo(Object other) {
+		if(this.arrivalDate.compareTo(((Order) other).getArrivalDate()) > 0) {
+			return 1;
+		}else if(this.arrivalDate.compareTo(((Order) other).getArrivalDate()) == 0) {
+			if(this.arrivalTime.compareTo(((Order) other).getArrivalTime()) > 0) {
+				return 1;
+			}else if(this.arrivalTime.compareTo(((Order) other).getArrivalTime()) == 0) {
+				return 0;
+			}else {
+				return -1;
+			}
+		}else {
+			return -1;
+		}
+	}
 	
 	
 	
