@@ -169,6 +169,9 @@ public class GenerateOrder {
 			order.setEndingTime(currentTime.plusHours(order.getType().getTimeToMake()));
 			order.setEndingDate(currentDate);
 		}
+		System.out.println("||||||||Processing: " + order + "|||||||||");
+		System.out.println("||||||||Finishing: " + order.getEndingDate() + "    " + order.getEndingTime());
+		
 		orders.remove(order);
 	}
 
@@ -229,6 +232,16 @@ public class GenerateOrder {
 	}
 
 
+	public String toString() {
+		String output = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		output += ("\nDate: " + currentDate + "   Time: " + currentTime);
+		output += ("\nAvailable Orders:");
+		for(int i = 0; i < orders.size(); i++) {
+			output += ("\n" + orders.get(i));
+		}
+		return output;
+	}
+	
 	public LocalDate getCurrentDate() {
 		return currentDate;
 	}
