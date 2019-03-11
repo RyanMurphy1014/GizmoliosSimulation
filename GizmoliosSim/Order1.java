@@ -27,6 +27,10 @@ public class Order1 implements Comparable{
 		this.tR = tR;
 	}
 	
+	public String toString() {
+		return null;
+	}
+	
 	public Customer getCustomer() {
 		return customer;
 	}
