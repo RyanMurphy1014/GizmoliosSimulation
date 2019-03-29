@@ -34,4 +34,9 @@ public class TimeDate {
 		this.lt = lt;
 	}
 
+	public void now() {
+		ld = LocalDate.now();
+		lt = LocalTime.now();
+	}
+	
 }
