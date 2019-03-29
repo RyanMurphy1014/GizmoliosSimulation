@@ -1,16 +1,14 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 public class TimeDate {
-	
-	
-	
 	
 	private LocalDate ld;
 	private LocalTime lt;
 	
 	public TimeDate() {
 		super();
+		this.ld = LocalDate.now();
+		this.lt = LocalTime.now();
 	}
 
 	public TimeDate(LocalDate ld, LocalTime lt) {
