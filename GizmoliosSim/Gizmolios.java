@@ -23,6 +23,11 @@ public class Gizmolios {
 	public void setTimeToMake(int timeToMake) {
 		this.timeToMake = timeToMake;
 	}
+	
+	public String toString() {
+		
+		return this.type + "," + this.timeToMake;
+	}
 
 	public Gizmolios(){
 		this.type = "";

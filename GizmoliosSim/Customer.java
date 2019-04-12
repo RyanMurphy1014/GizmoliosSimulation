@@ -27,6 +27,10 @@ public class Customer {
 		this.custName = "";
 		this.penalty = 0;
 	}
+	
+	public String toString() {
+		return custName + "," + penalty;
+	}
 
 	
 

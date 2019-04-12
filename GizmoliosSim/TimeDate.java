@@ -17,6 +17,11 @@ public class TimeDate {
 		this.ld = ld;
 		this.lt = lt;
 	}
+	
+	public String toString() {
+		
+		return ld + " " + lt;
+	}
 
 	public LocalDate getLd() {
 		return ld;

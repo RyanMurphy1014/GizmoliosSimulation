@@ -13,10 +13,11 @@ public class GenerateOrder {
 	private int ordersProcessed;
 
 	//Random chance adjustments
-	private final int MAX_REQUESTED_DAYS = 3;   //This max number is added to the current date and becomes the requested date
+	
 	private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
 	private final int MAX_PENALTY = 200;	
 	private final int MIN_PENALTY = 25;
+	private final Gizmolios[] type = new Gizmolios[5];
 	
 	/**
 	 * Creates generation object and creates first order.
@@ -33,6 +34,12 @@ public class GenerateOrder {
 		ordersProcessed = 0;
 		generate();
 		machine = new Machine(true, 1, null);
+		
+		/*String[] color = {"Red", "Blue", "Green","Orange","White"};
+		for (int i =0; i < type.length;i++) {
+			type[i].setType(color[i]);
+			type[i].setTimeToMake(((int)(Math.random()*(48-10)) + 10));
+		}*/
 		sendToMachine(orders.get(0));
 	}
 
@@ -50,7 +57,7 @@ public class GenerateOrder {
 	 * 3.Checks if order is complete and handles penalties
 	 * 4.And increments the hours
 	 */
-	public void checkHourly() {
+	/*public void checkHourly() {
 		//Generates new order by random chance
 		if(rand.nextInt(100) <= CHANCE_TO_GENERATE) {
 			generate();
@@ -86,7 +93,7 @@ public class GenerateOrder {
 			currentTime = currentTime.plusHours(1);
 		}
 
-	}
+	}*/
 
 
 	/**
@@ -97,7 +104,7 @@ public class GenerateOrder {
 	public void generate() {
 		orders.add(new Order(new Customer(generateName(rand.nextInt(30)), rand.nextInt(MAX_PENALTY - MIN_PENALTY)+MIN_PENALTY), 
 				getCurrentDate(), getCurrentTime(),
-				generateType(rand.nextInt(5)), getCurrentTime().plusHours(rand.nextInt(23)), 
+				type[rand.nextInt(4)], getCurrentTime().plusHours(rand.nextInt(23)), 
 				getCurrentDate().plusDays(rand.nextInt(MAX_REQUESTED_DAYS))));
 	}
 
@@ -145,20 +152,28 @@ public class GenerateOrder {
 	 * @param seed - random number to choose which gizmolio to return. Handled inside generate()
 	 * @return - A random gizmolio to assign to a customer
 	 */
-	public Gizmolios generateType(int seed) {
-		Gizmolios [] types= {new Gizmolios("Red", 10), new Gizmolios("Blue", 18), new Gizmolios("Green", 32), new Gizmolios("Orange", 15),
-				new Gizmolios("White", 36), new Gizmolios("Purple", 12)};
-		return types[seed];
-	}
+	/*public Gizmolios generateType(int seed) {
+		int num = 5;
+		Gizmolios [] types = new Gizmolios[num];
+		String[] color = {"Red", "Blue", "Green","Orange","White"};
+		
+		for (int i = 0; i < types.length; i++) {
+			//int hour = (int)(Math.random()*(36-10)) + 10;
+			types[i] = new Gizmolios(color[i],hour);
+		}
+		//Gizmolios [] types= {new Gizmolios("Red", 10), new Gizmolios("Blue", 18), new Gizmolios("Green", 32), new Gizmolios("Orange", 15),
+				//new Gizmolios("White", 36), new Gizmolios("Purple", 12)};
+		//return types[seed];
+	}*/
 
 	/**
 	 * Handles passing an order to the machine and sets the ending date and time of the order.
 	 * When an order is sent to the machine, it is removed from the available orders list
 	 * @param order - Which order to be sent to be manufactured
 	 */
-	public void sendToMachine(Order order) {
+	/*public void sendToMachine(Order order) {
 		machine.setCurrentOrder(order);
-		order.setStartingDate(currentDate);
+		
 		order.setStartingTime(currentTime);
 
 		//sets ending date and time
@@ -173,7 +188,7 @@ public class GenerateOrder {
 		System.out.println("||||||||Finishing: " + order.getEndingDate() + "    " + order.getEndingTime());
 		
 		orders.remove(order);
-	}
+	}*/
 
 
 	/**
@@ -181,7 +196,7 @@ public class GenerateOrder {
 	 * This method needs work to optimize order selection
 	 * @return - The order that is most beneficial to manufacture.
 	 */
-	public Order orderToRun() {
+	/*public Order orderToRun() {
 		Order highestPenalty = orders.get(0);
 		Order shortestTime = orders.get(0);
 
@@ -208,7 +223,7 @@ public class GenerateOrder {
 			return highestPenalty;
 		}
 
-	}
+	}*/
 
 
 	/**
@@ -216,7 +231,7 @@ public class GenerateOrder {
 	 * @param order - Order to check is it will cause a penalty
 	 * @return - Boolean if a penalty will be incurred
 	 */
-	public boolean causePenalty(Order order) {
+	/*public boolean causePenalty(Order order) {
 		if(order.getType().getTimeToMake() + currentTime.getHour() > 23) {
 			if(currentDate.plusDays(1).compareTo(order.getRequestedDate()) > 0) {		//If day is after requested
 				if(currentTime.plusHours(order.getType().getTimeToMake()).compareTo(order.getRequestedTime()) > 0) {  //IF time is after requested
@@ -229,7 +244,7 @@ public class GenerateOrder {
 		}
 		return false;  //Default to no penalty 
 
-	}
+	}*/
 
 
 	public String toString() {
