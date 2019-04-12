@@ -1,7 +1,6 @@
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Contains main method of project.
@@ -13,7 +12,7 @@ public class GizmoliosSimLauncher {
 		
 		GenerateOrder generator = new GenerateOrder();
 		while(generator.getCurrentDate().compareTo(LocalDate.now().plusDays(3)) < 0) {
-			generator.checkHourly();
+			//generator.checkHourly();
 			System.out.println(generator);
 		}
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
