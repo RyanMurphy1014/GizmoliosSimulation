@@ -1,9 +1,9 @@
 package Algorithm;
 
-import TimeRecords.FinalTimeRecord;
-import TimeRecords.InitialTimeRecord;
 import Blueprints.Customer;
 import Blueprints.Gizmolios;
+import TimeRecords.FinalTimeRecord;
+import TimeRecords.InitialTimeRecord;
 
 /**
  * Order class contains information on the order's Date and time for its arrival, requested finish, start of production

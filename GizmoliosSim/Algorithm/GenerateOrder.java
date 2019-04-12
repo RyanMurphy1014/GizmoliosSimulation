@@ -4,12 +4,15 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Blueprints.Customer;
 import Blueprints.Gizmolios;
 import Blueprints.Machine;
+import TimeRecords.InitialTimeRecord;
+import TimeRecords.TimeDate;
 
 public class GenerateOrder {
 	private LocalDate currentDate = LocalDate.now();
-	private LocalTime currentTime = LocalTime.of(0, 0);
+	private LocalTime currentTime = LocalTime.now();
 	private ArrayList<Order> orders = new ArrayList<>();
 	private Random rand = new Random();
 	private Machine machine;
@@ -18,7 +21,7 @@ public class GenerateOrder {
 
 	//Random chance adjustments
 	
-	private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
+	//private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
 	private final int MAX_PENALTY = 200;	
 	private final int MIN_PENALTY = 25;
 	private final Gizmolios[] type = new Gizmolios[5];
@@ -39,12 +42,6 @@ public class GenerateOrder {
 		generate();
 		machine = new Machine(true, 1, null);
 		
-		/*String[] color = {"Red", "Blue", "Green","Orange","White"};
-		for (int i =0; i < type.length;i++) {
-			type[i].setType(color[i]);
-			type[i].setTimeToMake(((int)(Math.random()*(48-10)) + 10));
-		}*/
-		sendToMachine(orders.get(0));
 	}
 
 
@@ -107,9 +104,7 @@ public class GenerateOrder {
 	 */
 	public void generate() {
 		orders.add(new Order(new Customer(generateName(rand.nextInt(30)), rand.nextInt(MAX_PENALTY - MIN_PENALTY)+MIN_PENALTY), 
-				getCurrentDate(), getCurrentTime(),
-				type[rand.nextInt(4)], getCurrentTime().plusHours(rand.nextInt(23)), 
-				getCurrentDate().plusDays(rand.nextInt(MAX_REQUESTED_DAYS))));
+				new InitialTimeRecord(new TimeDate(currentDate,currentTime),new TimeDate(currentDate.plusDays(((int)Math.random() * 3) + 1),LocalTime.NOON))));
 	}
 
 	/**
@@ -150,25 +145,6 @@ public class GenerateOrder {
 		"Dixie Batt"};
 		return names[seed];
 	}
-
-	/**
-	 * Generates a gizmolio to pass to the new order. Gizmolio color and time to make are stored in here
-	 * @param seed - random number to choose which gizmolio to return. Handled inside generate()
-	 * @return - A random gizmolio to assign to a customer
-	 */
-	/*public Gizmolios generateType(int seed) {
-		int num = 5;
-		Gizmolios [] types = new Gizmolios[num];
-		String[] color = {"Red", "Blue", "Green","Orange","White"};
-		
-		for (int i = 0; i < types.length; i++) {
-			//int hour = (int)(Math.random()*(36-10)) + 10;
-			types[i] = new Gizmolios(color[i],hour);
-		}
-		//Gizmolios [] types= {new Gizmolios("Red", 10), new Gizmolios("Blue", 18), new Gizmolios("Green", 32), new Gizmolios("Orange", 15),
-				//new Gizmolios("White", 36), new Gizmolios("Purple", 12)};
-		//return types[seed];
-	}*/
 
 	/**
 	 * Handles passing an order to the machine and sets the ending date and time of the order.
