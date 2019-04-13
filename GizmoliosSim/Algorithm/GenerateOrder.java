@@ -24,7 +24,7 @@ public class GenerateOrder {
 	private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
 	private final int MAX_PENALTY = 200;	
 	private final int MIN_PENALTY = 25;
-	private final Gizmolios[] type = new Gizmolios[5];
+	//private final Gizmolios[] type = new Gizmolios[5];
 	
 	/**
 	 * Creates generation object and creates first order.
