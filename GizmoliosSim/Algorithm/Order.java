@@ -18,7 +18,7 @@ public class Order{
 	
 	private Customer customer;
 	private int time;
-	private double lastPenalty;
+	private int lastPenalty;
 	private Gizmolios candy;
 	InitialTimeRecord iTR = new InitialTimeRecord();
 	FinalTimeRecord fTR = new FinalTimeRecord();
@@ -32,7 +32,8 @@ public class Order{
 		this.customer = customer;
 		String[] type = {"Red", "Blue", "Green","Orange","White"};
 		this.iTR = iTR;
-		this.time = (int)(Math.random() * (36-10)) + 10;
+		//this.lastPenalty = customer.getPenalty();
+		this.time = (int)(Math.random() * (15-5)) + 5;
 		int i = (int)(Math.random() * 5);
 		candy = new Gizmolios(type[i],this.time);
 	}
@@ -43,8 +44,10 @@ public class Order{
 	}
 	
 	public String toStringF() {
-		return this.toString() + "," + this.lastPenalty;
+		return this.candy.toString() + "," + this.customer.toString() +  
+				"," + this.iTR.toString() + "," + this.fTR.toString() + "," + this.lastPenalty;
 	}
+	
 	
 	public Customer getCustomer() {
 		return customer;
@@ -103,7 +106,7 @@ public class Order{
 		return 0;
 	}
 	
-	public double lastPenalty() {
+	public int lastPenalty() {
 		
 		if (this.compareTo() > 0) {
 			lastPenalty = this.customer.getPenalty();

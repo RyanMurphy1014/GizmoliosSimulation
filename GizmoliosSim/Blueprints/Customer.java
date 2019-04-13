@@ -9,14 +9,14 @@ import java.time.LocalTime;
 */
 public class Customer {
 	private String custName;
-	private double penalty;
+	private int penalty;
 
 	/**
 	 * Constructor
 	 * @param cName - Customer Name
 	 * @param penalty - Penalty for late production
 	 */
-	public Customer(String cName, double penalty){
+	public Customer(String cName, int penalty){
 		this.custName = cName;
 		this.penalty = penalty;
 	}
@@ -43,11 +43,11 @@ public class Customer {
 		this.custName = custName;
 	}
 
-	public double getPenalty() {
+	public int getPenalty() {
 		return penalty;
 	}
 
-	public void setPenalty(double penalty) {
+	public void setPenalty(int penalty) {
 		this.penalty = penalty;
 	}
 	

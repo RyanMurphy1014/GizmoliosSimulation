@@ -1,19 +1,27 @@
 package Algorithm;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 import Blueprints.Customer;
 import Blueprints.Gizmolios;
 import Blueprints.Machine;
+import TimeRecords.FinalTimeRecord;
 import TimeRecords.InitialTimeRecord;
 import TimeRecords.TimeDate;
 
 public class GenerateOrder {
 	private LocalDate currentDate = LocalDate.now();
-	private LocalTime currentTime = LocalTime.now();
-	private ArrayList<Order> orders = new ArrayList<>();
+	private LocalTime currentTime = LocalTime.of(0, 0);
+	private LinkedList<Order> orders = new LinkedList<>();
+	private LinkedList<Order> ordersList = new LinkedList<>();
+	
+	private String algorithm;
+	
 	private Random rand = new Random();
 	private Machine machine;
 	private int penalty;
@@ -24,7 +32,7 @@ public class GenerateOrder {
 	private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
 	private final int MAX_PENALTY = 200;	
 	private final int MIN_PENALTY = 25;
-	//private final Gizmolios[] type = new Gizmolios[5];
+	private final Gizmolios[] type = new Gizmolios[5];
 	
 	/**
 	 * Creates generation object and creates first order.
@@ -37,12 +45,23 @@ public class GenerateOrder {
 	 * Machine class never has to be touched.
 	 */
 	public GenerateOrder() {
+		//this.algorithm = algorithm;
 		penalty = 0;
 		ordersProcessed = 0;
 		generate();
 		machine = new Machine(true, 1, null);
-		sendToMachine(orderToRun());
+		sendToMachine(spa());
 		
+	}
+	
+	public GenerateOrder(String type) {
+		penalty = 0;
+		ordersProcessed = 0;
+		generate();
+		machine = new Machine(true, 1, null);
+		this.algorithm=type;
+		sendToMachine(spa());
+		//checkHourly();
 	}
 
 
@@ -68,7 +87,13 @@ public class GenerateOrder {
 		//Sends new order to the machine
 		if(machine.isRunning() == false) {
 			machine.setRunningStatus(true);
-			sendToMachine(orderToRun());
+			sendToMachine(spa());
+			/*if(algorithm.equals("fifo")) {
+				//sendToMachine(fifo());
+				sendToMachine(spa());
+			}else if(algorithm.equals("Highest Penalty")) {
+				sendToMachine(highestPenalty());
+			}*/
 		}
 
 		//Checks If order is complete 
@@ -105,6 +130,7 @@ public class GenerateOrder {
 	 * at the beginning of the file
 	 */
 	public void generate() {
+		
 		orders.add(new Order(new Customer(generateName(rand.nextInt(30)), rand.nextInt(MAX_PENALTY - MIN_PENALTY)+MIN_PENALTY), 
 				new InitialTimeRecord(new TimeDate(currentDate,currentTime),new TimeDate(currentDate.plusDays(((int)Math.random() * 3) + 1),LocalTime.NOON))));
 	}
@@ -156,7 +182,13 @@ public class GenerateOrder {
 	public void sendToMachine(Order order) {
 		machine.setCurrentOrder(order);
 		
+		order.setfTR(new FinalTimeRecord(order.getiTR().getArrival(),order.getiTR().getArrival()));
+
+		machine.setCurrentOrder(order);
+		order.getfTR().getStart().setLd(currentDate);
 		order.getfTR().getStart().setLt(currentTime);
+		
+		
 
 		//sets ending date and time
 		if(order.getCandy().getTimeToMake() + currentTime.getHour() > 23) {
@@ -166,11 +198,49 @@ public class GenerateOrder {
 			order.getfTR().getEnd().setLt(currentTime.plusHours(order.getCandy().getTimeToMake()));
 			order.getfTR().getEnd().setLd(currentDate);
 		}
+		order.getCustomer().setPenalty(0);
 		System.out.println("||||||||Processing: " + order + "|||||||||");
 		System.out.println("||||||||Finishing: " + order.getfTR().getEnd().getLd() + "    " + order.getfTR().getEnd().getLt());
 		
 		orders.remove(order);
 	}
+	
+	public Order highestPenalty() {
+		int highestPenalty = orders.get(0).getCustomer().getPenalty();
+		int	highestPenaltyIndex = 0;
+		for(int i = 0; i < orders.size(); i++) {
+			if(highestPenalty < orders.get(i).getCustomer().getPenalty()) {
+				highestPenalty = orders.get(i).getCustomer().getPenalty();
+			}
+		}
+		return orders.get(highestPenaltyIndex);
+	}
+	
+	/*public void fifo(LinkedList<Order> list){
+		Order temp = new Order();
+		Queue<Order> orders;
+		for(int c=0;c<list.size();c++){
+			orders.add(list.get(c));
+		}
+		for(int i=0;i<list.size();i++){
+			temp=list.get(i);
+			if(currentDate.compareTo((ChronoLocalDate) temp.iTR.getRequest())<0){
+				try {
+					orders.remove();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			else {
+				penalty=(int) (penalty+list.get(i).getCustomer().getPenalty());
+				try {
+					orders.remove();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}*/
 
 
 	/**
@@ -178,7 +248,7 @@ public class GenerateOrder {
 	 * This method needs work to optimize order selection
 	 * @return - The order that is most beneficial to manufacture.
 	 */
-	public Order orderToRun() {
+	public Order spa() {
 		Order highestPenalty = orders.get(0);
 		Order shortestTime = orders.get(0);
 
@@ -259,7 +329,7 @@ public class GenerateOrder {
 	}
 
 
-	public ArrayList<Order> getOrders(){
+	public LinkedList<Order> getOrders(){
 		return orders;
 	}
 
@@ -270,4 +340,14 @@ public class GenerateOrder {
 	public Machine getMachine() {
 		return machine;
 	}
+
+	public LinkedList<Order> getOrdersList() {
+		return ordersList;
+	}
+
+	public void setOrdersList(LinkedList<Order> ordersList) {
+		this.ordersList = ordersList;
+	}
+	
+	
 }
