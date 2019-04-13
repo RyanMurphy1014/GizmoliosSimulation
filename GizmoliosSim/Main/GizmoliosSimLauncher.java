@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import Algorithm.GenerateOrder;
 import Algorithm.Order;
+import Blueprints.FileWriter;
 
 /**
  * Contains main method of project.
@@ -51,6 +52,8 @@ public class GizmoliosSimLauncher {
 				GenerateOrder generator = new GenerateOrder(type);
 				mainLoop(generator);
 			} else if (choice == 6) {
+				FileWriter file = null;
+				file.outputData(list);
 
 			} else if (choice == 7) {
 				System.out.println("Thank you for using our simulation.");
