@@ -1,6 +1,8 @@
 package Blueprints;
+
 /**
  * Class to hold information about what type of Gizmolio is being made
+ * 
  * @author ryanm
  *
  */
@@ -9,12 +11,13 @@ public class Gizmolios {
 	private int timeToMake;
 
 	/**
-	 * @param type - Type of Gizmolio
+	 * @param type
+	 *            - Type of Gizmolio
 	 */
 	public Gizmolios(String type, int creationTime) {
 		this.type = type;
 		this.timeToMake = creationTime;
-		
+
 	}
 
 	public int getTimeToMake() {
@@ -24,13 +27,13 @@ public class Gizmolios {
 	public void setTimeToMake(int timeToMake) {
 		this.timeToMake = timeToMake;
 	}
-	
+
 	public String toString() {
-		
+
 		return this.type + "," + this.timeToMake;
 	}
 
-	public Gizmolios(){
+	public Gizmolios() {
 		this.type = "";
 		this.timeToMake = 0;
 	}
@@ -38,8 +41,9 @@ public class Gizmolios {
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 }

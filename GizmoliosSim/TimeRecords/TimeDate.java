@@ -1,12 +1,13 @@
 package TimeRecords;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 public class TimeDate {
-	
-	
+
 	private LocalDate ld;
 	private LocalTime lt;
-	
+
 	public TimeDate() {
 		super();
 		this.ld = LocalDate.now();
@@ -18,9 +19,9 @@ public class TimeDate {
 		this.ld = ld;
 		this.lt = lt;
 	}
-	
+
 	public String toString() {
-		
+
 		return ld + " " + lt;
 	}
 
@@ -44,5 +45,5 @@ public class TimeDate {
 		ld = LocalDate.now();
 		lt = LocalTime.now();
 	}
-	
+
 }

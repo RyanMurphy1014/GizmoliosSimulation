@@ -6,23 +6,25 @@ import TimeRecords.FinalTimeRecord;
 import TimeRecords.InitialTimeRecord;
 
 /**
- * Order class contains information on the order's Date and time for its arrival, requested finish, start of production
- * and end of production, as well as the Customer of the order and the type of Gizmolio being made.
+ * Order class contains information on the order's Date and time for its
+ * arrival, requested finish, start of production and end of production, as well
+ * as the Customer of the order and the type of Gizmolio being made.
  * 
- * All data for the project is accessed through here with various dot operators. Refer to UML Diagram 
- * on how to locate the desired data.
+ * All data for the project is accessed through here with various dot operators.
+ * Refer to UML Diagram on how to locate the desired data.
+ * 
  * @author ryanm
  *
  */
-public class Order{
-	
+public class Order {
+
 	private Customer customer;
 	private int time;
 	private int lastPenalty;
 	private Gizmolios candy;
 	InitialTimeRecord iTR = new InitialTimeRecord();
 	FinalTimeRecord fTR = new FinalTimeRecord();
-	
+
 	public Order() {
 		super();
 	}
@@ -30,25 +32,23 @@ public class Order{
 	public Order(Customer customer, InitialTimeRecord iTR) {
 		super();
 		this.customer = customer;
-		String[] type = {"Red", "Blue", "Green","Orange","White"};
+		String[] type = { "Red", "Blue", "Green", "Orange", "White" };
 		this.iTR = iTR;
-		//this.lastPenalty = customer.getPenalty();
-		this.time = (int)(Math.random() * (15-5)) + 5;
-		int i = (int)(Math.random() * 5);
-		candy = new Gizmolios(type[i],this.time);
+		// this.lastPenalty = customer.getPenalty();
+		this.time = (int) (Math.random() * (15 - 5)) + 5;
+		int i = (int) (Math.random() * 5);
+		candy = new Gizmolios(type[i], this.time);
 	}
-	
+
 	public String toString() {
-		return this.candy.toString() + "," + this.customer.toString() +  
-				"," + this.iTR.toString();
+		return this.candy.toString() + "," + this.customer.toString() + "," + this.iTR.toString();
 	}
-	
+
 	public String toStringF() {
-		return this.candy.toString() + "," + this.customer.toString() +  
-				"," + this.iTR.toString() + "," + this.fTR.toString() + "," + this.lastPenalty;
+		return this.candy.toString() + "," + this.customer.toString() + "," + this.iTR.toString() + ","
+				+ this.fTR.toString() + "," + this.lastPenalty;
 	}
-	
-	
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -57,7 +57,6 @@ public class Order{
 		this.customer = customer;
 	}
 
-	
 	public FinalTimeRecord getfTR() {
 		return fTR;
 	}
@@ -65,8 +64,7 @@ public class Order{
 	public void setfTR(FinalTimeRecord fTR) {
 		this.fTR = fTR;
 	}
-	
-	
+
 	public InitialTimeRecord getiTR() {
 		return iTR;
 	}
@@ -74,7 +72,6 @@ public class Order{
 	public void setiTR(InitialTimeRecord iTR) {
 		this.iTR = iTR;
 	}
-	
 
 	public Gizmolios getCandy() {
 		return candy;
@@ -85,37 +82,31 @@ public class Order{
 	}
 
 	public int compareTo() {
-		
-		
+
 		if (this.iTR.getRequest().getLd().compareTo(this.fTR.getEnd().getLd()) > 0) {
-			
+
 			return 0;
-		}
-		else if (this.iTR.getRequest().getLd().compareTo(this.fTR.getEnd().getLd()) < 0) {
+		} else if (this.iTR.getRequest().getLd().compareTo(this.fTR.getEnd().getLd()) < 0) {
 			return 1;
-		}
-		else {
+		} else {
 			if (this.iTR.getRequest().getLt().compareTo(this.fTR.getEnd().getLt()) >= 0) {
 				return 0;
-			}
-			else if (this.iTR.getRequest().getLt().compareTo(this.fTR.getEnd().getLt()) < 0) {
+			} else if (this.iTR.getRequest().getLt().compareTo(this.fTR.getEnd().getLt()) < 0) {
 				return 1;
 			}
 		}
-			
+
 		return 0;
 	}
-	
+
 	public int lastPenalty() {
-		
+
 		if (this.compareTo() > 0) {
 			lastPenalty = this.customer.getPenalty();
-		}
-		else
+		} else
 			lastPenalty = 0;
-		
+
 		return lastPenalty;
 	}
-	
-	
+
 }
