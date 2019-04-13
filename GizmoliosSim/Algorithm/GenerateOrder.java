@@ -21,7 +21,7 @@ public class GenerateOrder {
 
 	//Random chance adjustments
 	
-	//private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
+	private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
 	private final int MAX_PENALTY = 200;	
 	private final int MIN_PENALTY = 25;
 	private final Gizmolios[] type = new Gizmolios[5];
@@ -41,6 +41,7 @@ public class GenerateOrder {
 		ordersProcessed = 0;
 		generate();
 		machine = new Machine(true, 1, null);
+		sendToMachine(orderToRun());
 		
 	}
 
@@ -58,11 +59,12 @@ public class GenerateOrder {
 	 * 3.Checks if order is complete and handles penalties
 	 * 4.And increments the hours
 	 */
-	/*public void checkHourly() {
-		//Generates new order by random chance
+	public void checkHourly() {
+				
 		if(rand.nextInt(100) <= CHANCE_TO_GENERATE) {
 			generate();
 		}
+		
 		//Sends new order to the machine
 		if(machine.isRunning() == false) {
 			machine.setRunningStatus(true);
@@ -70,10 +72,10 @@ public class GenerateOrder {
 		}
 
 		//Checks If order is complete 
-		if(currentDate.equals(machine.getCurrentOrder().getEndingDate())) {				//if it is the finishing date
-			if(currentTime.equals(machine.getCurrentOrder().getEndingTime())) {				//if it is the finishing time
-				if(machine.getCurrentOrder().getEndingDate().compareTo(machine.getCurrentOrder().getRequestedDate()) > 0) {    //If the date is late
-					if(machine.getCurrentOrder().getEndingTime().compareTo(machine.getCurrentOrder().getRequestedTime()) > 0) {	//If the time is late
+		if(currentDate.equals(machine.getCurrentOrder().getfTR().getEnd().getLd())) {				//if it is the finishing date
+			if(currentTime.equals(machine.getCurrentOrder().getfTR().getEnd().getLt())) {				//if it is the finishing time
+				if(machine.getCurrentOrder().getfTR().getEnd().getLd().compareTo(machine.getCurrentOrder().getiTR().getRequest().getLd()) > 0) {    //If the date is late
+					if(machine.getCurrentOrder().getfTR().getEnd().getLt().compareTo(machine.getCurrentOrder().getiTR().getRequest().getLt()) > 0) {	//If the time is late
 						penalty += machine.getCurrentOrder().getCustomer().getPenalty();	
 						machine.setRunningStatus(false);
 						ordersProcessed++;
@@ -94,7 +96,7 @@ public class GenerateOrder {
 			currentTime = currentTime.plusHours(1);
 		}
 
-	}*/
+	}
 
 
 	/**
@@ -151,24 +153,24 @@ public class GenerateOrder {
 	 * When an order is sent to the machine, it is removed from the available orders list
 	 * @param order - Which order to be sent to be manufactured
 	 */
-	/*public void sendToMachine(Order order) {
+	public void sendToMachine(Order order) {
 		machine.setCurrentOrder(order);
 		
-		order.setStartingTime(currentTime);
+		order.getfTR().getStart().setLt(currentTime);
 
 		//sets ending date and time
-		if(order.getType().getTimeToMake() + currentTime.getHour() > 23) {
-			order.setEndingDate(currentDate.plusDays((order.getType().getTimeToMake() + currentTime.getHour()) / 23));
-			order.setEndingTime(currentTime.plusHours(order.getType().getTimeToMake()));
+		if(order.getCandy().getTimeToMake() + currentTime.getHour() > 23) {
+			order.getfTR().getEnd().setLd(currentDate.plusDays((order.getCandy().getTimeToMake() + currentTime.getHour()) / 23));
+			order.getfTR().getEnd().setLt(currentTime.plusHours(order.getCandy().getTimeToMake()));
 		}else {
-			order.setEndingTime(currentTime.plusHours(order.getType().getTimeToMake()));
-			order.setEndingDate(currentDate);
+			order.getfTR().getEnd().setLt(currentTime.plusHours(order.getCandy().getTimeToMake()));
+			order.getfTR().getEnd().setLd(currentDate);
 		}
 		System.out.println("||||||||Processing: " + order + "|||||||||");
-		System.out.println("||||||||Finishing: " + order.getEndingDate() + "    " + order.getEndingTime());
+		System.out.println("||||||||Finishing: " + order.getfTR().getEnd().getLd() + "    " + order.getfTR().getEnd().getLt());
 		
 		orders.remove(order);
-	}*/
+	}
 
 
 	/**
@@ -176,7 +178,7 @@ public class GenerateOrder {
 	 * This method needs work to optimize order selection
 	 * @return - The order that is most beneficial to manufacture.
 	 */
-	/*public Order orderToRun() {
+	public Order orderToRun() {
 		Order highestPenalty = orders.get(0);
 		Order shortestTime = orders.get(0);
 
@@ -189,8 +191,8 @@ public class GenerateOrder {
 
 		//Find shortest completion time
 		for(int i = 0; i < orders.size(); i++) {
-			if(orders.get(0).getRequestedDate().compareTo(shortestTime.getRequestedDate()) < 0) {
-				if(orders.get(0).getRequestedTime().compareTo(shortestTime.getRequestedTime()) < 0) {
+			if(orders.get(0).getiTR().getRequest().getLd().compareTo(shortestTime.getiTR().getRequest().getLd()) < 0) {
+				if(orders.get(0).getiTR().getRequest().getLt().compareTo(shortestTime.getiTR().getRequest().getLt()) < 0) {
 					shortestTime = orders.get(i);
 				}
 			}
@@ -203,28 +205,27 @@ public class GenerateOrder {
 			return highestPenalty;
 		}
 
-	}*/
-
+	}
 
 	/**
 	 * Checks if the passed in order will have a penalty if it is manufactured now.
 	 * @param order - Order to check is it will cause a penalty
 	 * @return - Boolean if a penalty will be incurred
 	 */
-	/*public boolean causePenalty(Order order) {
-		if(order.getType().getTimeToMake() + currentTime.getHour() > 23) {
-			if(currentDate.plusDays(1).compareTo(order.getRequestedDate()) > 0) {		//If day is after requested
-				if(currentTime.plusHours(order.getType().getTimeToMake()).compareTo(order.getRequestedTime()) > 0) {  //IF time is after requested
+	public boolean causePenalty(Order order) {
+		if(order.getCandy().getTimeToMake() + currentTime.getHour() > 23) {
+			if(currentDate.plusDays(1).compareTo(order.getiTR().getRequest().getLd()) > 0) {		//If day is after requested
+				if(currentTime.plusHours(order.getCandy().getTimeToMake()).compareTo(order.getiTR().getRequest().getLt()) > 0) {  //IF time is after requested
 					return true;
 				}
 			}
 		}
-		if(currentTime.plusHours(order.getType().getTimeToMake()).compareTo(order.getRequestedTime()) > 0) {  //IF time is after requested
+		if(currentTime.plusHours(order.getCandy().getTimeToMake()).compareTo(order.getiTR().getRequest().getLt()) > 0) {  //IF time is after requested
 			return true;
 		}
 		return false;  //Default to no penalty 
 
-	}*/
+	}
 
 
 	public String toString() {

@@ -55,11 +55,11 @@ public class Order{
 	}
 
 	
-	public FinalTimeRecord gettR() {
+	public FinalTimeRecord getfTR() {
 		return fTR;
 	}
 
-	public void settR(FinalTimeRecord fTR) {
+	public void setfTR(FinalTimeRecord fTR) {
 		this.fTR = fTR;
 	}
 	
@@ -70,6 +70,15 @@ public class Order{
 
 	public void setiTR(InitialTimeRecord iTR) {
 		this.iTR = iTR;
+	}
+	
+
+	public Gizmolios getCandy() {
+		return candy;
+	}
+
+	public void setCandy(Gizmolios candy) {
+		this.candy = candy;
 	}
 
 	public int compareTo() {
