@@ -1,26 +1,22 @@
 package Blueprints;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Class that holds information for Customer Includes Customer Name, and Penalty
- * 
- * @author ryanm
- */
+	Class that holds information for Customer
+	Includes Customer Name, and Penalty
+	@author ryanm
+*/
 public class Customer {
 	private String custName;
 	private int penalty;
 
 	/**
 	 * Constructor
-	 * 
-	 * @param cName
-	 *            - Customer Name
-	 * @param penalty
-	 *            - Penalty for late production
+	 * @param cName - Customer Name
+	 * @param penalty - Penalty for late production
 	 */
-	public Customer(String cName, int penalty) {
+	public Customer(String cName, int penalty){
 		this.custName = cName;
 		this.penalty = penalty;
 	}
@@ -28,14 +24,16 @@ public class Customer {
 	/**
 	 * Default constructor
 	 */
-	public Customer() {
+	public Customer(){
 		this.custName = "";
 		this.penalty = 0;
 	}
-
+	
 	public String toString() {
 		return custName + "," + penalty;
 	}
+
+	
 
 	public String getCustName() {
 		return custName;
@@ -52,5 +50,5 @@ public class Customer {
 	public void setPenalty(int penalty) {
 		this.penalty = penalty;
 	}
-
+	
 }
