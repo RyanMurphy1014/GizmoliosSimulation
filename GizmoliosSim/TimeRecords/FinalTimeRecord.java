@@ -7,6 +7,7 @@ public class FinalTimeRecord {
 	
 	public FinalTimeRecord() {
 		super();
+		
 	}
 	
 	public FinalTimeRecord(TimeDate str, TimeDate e) {

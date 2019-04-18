@@ -14,7 +14,7 @@ import TimeRecords.InitialTimeRecord;
  * @author ryanm
  *
  */
-public class Order implements Comparable<Order>{
+public class Order{
 	
 	private Customer customer;
 	private int time;
@@ -45,8 +45,10 @@ public class Order implements Comparable<Order>{
 	}
 	
 	public String toStringF() {
-		return this.toString() +","+ this.fTR.toString() + "," + this.lastPenalty;
+		return this.candy.toString() + "," + this.customer.toString() +  
+				"," + this.iTR.toString() + "," + this.fTR.toString() + "," + this.lastPenalty;
 	}
+	
 	
 	public Customer getCustomer() {
 		return customer;
@@ -82,8 +84,16 @@ public class Order implements Comparable<Order>{
 	public void setCandy(Gizmolios candy) {
 		this.candy = candy;
 	}
+	
+	public int getLastPenalty() {
+		return lastPenalty;
+	}
 
-	public int compareToF() {
+	public void setLastPenalty(int lastPenalty) {
+		this.lastPenalty = lastPenalty;
+	}
+
+	public int compareTo() {
 		
 		
 		if (this.iTR.getRequest().getLd().compareTo(this.fTR.getEnd().getLd()) > 0) {
@@ -105,22 +115,16 @@ public class Order implements Comparable<Order>{
 		return 0;
 	}
 	
-	public int lastPenalty() {
+	/*public int lastPenalty() {
 		
-		if (this.compareToF() > 0) {
+		if (this.compareTo() > 0) {
 			lastPenalty = this.customer.getPenalty();
 		}
 		else
 			lastPenalty = 0;
 		
 		return lastPenalty;
-	}
-
-	@Override
-	public int compareTo(Order o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	}*/
 	
 	
 }

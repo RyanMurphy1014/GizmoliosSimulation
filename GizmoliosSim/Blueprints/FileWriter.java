@@ -40,10 +40,10 @@ public class FileWriter {
 			try {
 				out = openWrite();
 				int ID = 1;
-				out.println("ID,Name,Time(hrs),Late Penalty,Order Arrival,Requested,Start Processing,End Processing,Penalty");
+				out.println("ID,Gizmolios Type,Time(hrs),Customer Name,Late Penalty,Order Arrival,Requested,Start Processing,End Processing,Penalty");
 				for (int i = 0; i < nums.size(); i++) {
-					
-					out.println("Order_" + ID + "," + nums.get(i).toString());
+					ID=i+1;
+					out.println("Order_"+ ID + "," + nums.get(i).toStringF());
 				
 				}
 			} finally {
