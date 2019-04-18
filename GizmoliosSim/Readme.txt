@@ -69,7 +69,7 @@ lower penalty at the last
 	Option 2 being the second Algorithm uses Smart Penalty Algorithm (SPA) to get as less penalty as possible
 this algorithm run the program on the bases of just taking the penalty for the Gizmolios that are requested 
 in lesser time than possible to create the Gizmolios. Instead it just takes that penalty charge and creates 
-all the other Gizmolis to minimize the penalty.
+all the other Gizmolios to minimize the penalty.
 
 	Option 3 will guide the user to store the final result for future reference.
 	
@@ -88,6 +88,6 @@ to Database.
 	Option 7 ends the program.
 	
 	This Concludes the instruction on how to run this program and what to do before and while using this program. Thank you 
-user for using our program and Hope you enjoy this Object Oriented Program (OOP) which runs on menu based programing. Please 
+user for using our program and Hope you enjoy this Object Oriented Program (OOP) which runs on menu based programming. Please 
 refer back to Readme.txt files if you are stuck between the program. 
 	
