@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="658.0" prefWidth="251.0" style="-fx-background-color: #4f208c;">
+         <children>
+            <Button fx:id="button" mnemonicParsing="false" prefHeight="72.0" prefWidth="259.0" stylesheets="@stylesheet.css" text="Button" />
+         </children>
+      </VBox>
+      <VBox layoutX="251.0" prefHeight="658.0" prefWidth="649.0" style="-fx-background-color: #2d0c59;" />
+   </children>
+</AnchorPane>

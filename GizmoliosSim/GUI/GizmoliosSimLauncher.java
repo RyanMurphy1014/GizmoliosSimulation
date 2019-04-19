@@ -1,4 +1,5 @@
-package Main;
+package GUI;
+import GUI.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -8,16 +9,25 @@ import Algorithm.GenerateOrder;
 import Algorithm.Order;
 import Blueprints.FileWriter;
 import Database.DBUtilities;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 /**
  * Contains main method of project.
  * @author ryanm
  *
  */
-public class GizmoliosSimLauncher {
+public class GizmoliosSimLauncher extends Application{
 	static Scanner scan = new Scanner(System.in);
-	public static LinkedList<Order> list = new LinkedList<Order>();     
+	public static LinkedList<Order> list = new LinkedList<Order>();
+	Button button;
 	public static void main(String [] args) throws IOException{
+		launch(args); //Starts GUI
 		String type;
 		int choice=0;
 		boolean loop=true;
@@ -105,4 +115,27 @@ public class GizmoliosSimLauncher {
 		System.out.println("Orders Processed: " + generator.getOrdersProcessed());
 		System.out.println("Penalty: " + generator.getPenalty());
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * This is the method that starts the GUI elements
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
+	@Override
+	  public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
+    }
+
 }
+
+
+
+
+
+
+
+
+
