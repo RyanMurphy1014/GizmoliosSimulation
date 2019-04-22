@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import de.jensd.fx.glyphs.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.*?>
@@ -9,12 +10,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <bottom>
-      <HBox prefHeight="121.0" prefWidth="1280.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
+      <HBox prefHeight="96.0" prefWidth="900.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Run" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Pause/Play" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
@@ -24,7 +24,7 @@
                   <Font size="28.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="427.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Exit" textFill="WHITE">
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#exitClick" prefHeight="160.0" prefWidth="427.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Exit" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -45,18 +45,24 @@
             </ComboBox>
             <HBox prefHeight="83.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="77.0" prefWidth="157.0" text="Maximum number of hours&#10; to simulate" />
-                  <TextField>
+                  <Label prefHeight="77.0" prefWidth="162.0" text="Maximum number &#10;of hours to simulate">
                      <HBox.margin>
-                        <Insets top="25.0" />
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <TextField prefHeight="39.0" prefWidth="90.0">
+                     <HBox.margin>
+                        <Insets left="10.0" top="25.0" />
                      </HBox.margin>
                   </TextField>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="114.0" prefHeight="73.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="157.0" text="Percent to generate&#10;an order (per hour)&#10;" />
-                  <TextField>
+                  <Label prefHeight="73.0" prefWidth="171.0" text="Percent to generate&#10;an order (per hour)&#10;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <TextField prefHeight="39.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -65,8 +71,11 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="158.0" prefHeight="75.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="157.0" text="Maximum Penalty" />
-                  <TextField>
+                  <Label prefHeight="75.0" prefWidth="171.0" text="Maximum Penalty">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <TextField prefHeight="40.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -75,18 +84,68 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="202.0" prefHeight="80.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="157.0" text="Minimum Penalty" />
-                  <TextField>
+                  <Label prefHeight="80.0" prefWidth="171.0" text="Minimum Penalty">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <TextField prefHeight="39.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
                   </TextField>
                </children>
             </HBox>
+            <Slider fx:id="speedControl" onMouseDragEntered="#updateSpeed" snapToTicks="true" />
+            <Label text="Speed Control" translateX="95.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Hours To Simulate&#10; per Second">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="hourPerSecond" text="Speed">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainpanel" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainpanel" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="59.0" layoutY="13.0" text="Order List" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <ListView layoutX="28.0" layoutY="52.0" prefHeight="189.0" prefWidth="205.0" style="-fx-background-color: #5d5963;" />
+            <Label layoutX="356.0" layoutY="13.0" text="Current Order" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="329.0" layoutY="47.0" prefHeight="49.0" prefWidth="221.0" text="Current Order Goes Here" textFill="WHITE" />
+            <LineChart layoutX="18.0" layoutY="301.0" prefHeight="195.0" prefWidth="547.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Label layoutX="105.0" layoutY="282.0" text="Penalty Over Time" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Separator layoutX="5.0" layoutY="271.0" prefHeight="0.0" prefWidth="586.0" />
+         </children></AnchorPane>
    </center>
 </BorderPane>
