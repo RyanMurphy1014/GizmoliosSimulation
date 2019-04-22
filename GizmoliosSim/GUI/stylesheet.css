@@ -1,7 +1,16 @@
-.button{
-	-fx-background-color: #333645;
+.sidebar{
+	-fx-background-color: #7289da;
 }
 
-.button:hover{
-	-fx-background-color: #202332;
+.footbar{
+	-fx-background-color: #2c2f33;
+}
+
+.mainpanel{
+	-fx-background-color: #23272a;
+}
+
+.buttons{
+	-fx-background-color: #5e3ded;
+	-fx-border-color: #000000;
 }

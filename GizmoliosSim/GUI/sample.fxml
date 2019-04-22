@@ -9,13 +9,84 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="658.0" prefWidth="251.0" style="-fx-background-color: #4f208c;">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+   <bottom>
+      <HBox prefHeight="121.0" prefWidth="1280.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="button" mnemonicParsing="false" prefHeight="72.0" prefWidth="259.0" stylesheets="@stylesheet.css" text="Button" />
+            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Run" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="467.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Send To Databse" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="427.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Exit" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="620.0" prefWidth="305.0" styleClass="sidebar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox fx:id="algorithms" prefHeight="60.0" prefWidth="326.0" promptText="Algorithm To Test" style="-fx-background-color: #6242f4;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ComboBox>
+            <HBox prefHeight="83.0" prefWidth="305.0">
+               <children>
+                  <Label prefHeight="77.0" prefWidth="157.0" text="Maximum number of hours&#10; to simulate" />
+                  <TextField>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="114.0" prefHeight="73.0" prefWidth="305.0">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="157.0" text="Percent to generate&#10;an order (per hour)&#10;" />
+                  <TextField>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="158.0" prefHeight="75.0" prefWidth="305.0">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="157.0" text="Maximum Penalty" />
+                  <TextField>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="202.0" prefHeight="80.0" prefWidth="305.0">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="157.0" text="Minimum Penalty" />
+                  <TextField>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <VBox layoutX="251.0" prefHeight="658.0" prefWidth="649.0" style="-fx-background-color: #2d0c59;" />
-   </children>
-</AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainpanel" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
