@@ -1,4 +1,7 @@
 package Algorithm;
+import GUI.Controller;
+import GUI.GizmoliosSimLauncher;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDate;
@@ -29,9 +32,9 @@ public class GenerateOrder {
 
 	//Random chance adjustments
 	
-	private final int CHANCE_TO_GENERATE = 10;	// 0-99 chance that a new order will be generated and added to the list
-	private final int MAX_PENALTY = 200;	
-	private final int MIN_PENALTY = 25;
+	private int CHANCE_TO_GENERATE = 1;	// 0-99 chance that a new order will be generated and added to the list
+	private int MAX_PENALTY = 1;	
+	private int MIN_PENALTY = 1;
 	private final Gizmolios[] type = new Gizmolios[5];
 	
 	/**
@@ -54,8 +57,11 @@ public class GenerateOrder {
 		
 	}
 	
-	public GenerateOrder(String type) {
+	public GenerateOrder(String type, int chanceToGenerate, int maxPenalty, int minPenalty) {
 		penalty = 0;
+		CHANCE_TO_GENERATE = chanceToGenerate;
+		MAX_PENALTY = maxPenalty;
+		MIN_PENALTY = minPenalty;
 		ordersProcessed = 0;
 		generate();
 		machine = new Machine(true, 1, null);
@@ -93,7 +99,7 @@ public class GenerateOrder {
 				if(algorithm.equals("fifo")) {
 					sendToMachine(fifo());
 					//machine.setRunningStatus(false);
-				}else if(algorithm.equals("hpf")) {
+				}else if(algorithm.equals("Highest Penalty First")) {
 					sendToMachine(hpf());
 					//machine.setRunningStatus(false);
 				}
@@ -101,7 +107,7 @@ public class GenerateOrder {
 					sendToMachine(stf());
 					//machine.setRunningStatus(false);
 				}
-				else if(algorithm.equals("spa")) {
+				else if(algorithm.equals("Smart Penalty")) {
 					sendToMachine(spa());
 					//machine.setRunningStatus(false);
 				}
@@ -147,7 +153,8 @@ public class GenerateOrder {
 	 * at the beginning of the file
 	 */
 	public void generate() {
-		orders.add(new Order(new Customer(generateName(rand.nextInt(30)), rand.nextInt(MAX_PENALTY - MIN_PENALTY) + MIN_PENALTY),
+		orders.add(new Order(new Customer(generateName(rand.nextInt(30))
+				, rand.nextInt(MAX_PENALTY - MIN_PENALTY) + MIN_PENALTY),
 				new InitialTimeRecord(new TimeDate(currentDate, currentTime),new TimeDate(currentDate.plusDays(((int) Math.random() * 3) + 1), LocalTime.NOON)),
 				new FinalTimeRecord(new TimeDate(currentDate, currentTime), new TimeDate(currentDate, currentTime)),
 				penalty));
@@ -381,5 +388,18 @@ public class GenerateOrder {
 
 	public void setProcessed(LinkedList<Order> processed) {
 		this.processed = processed;
+	}
+	
+	public void setPercentGenerate(int percent) {
+		CHANCE_TO_GENERATE = percent;
+		System.out.println("set inside of Generate Order");
+	}
+	
+	public void setMaxPenalty(int maxPen) {
+		MAX_PENALTY = maxPen;
+	}
+	
+	public void setMinPenalty(int minPen) {
+		MIN_PENALTY = minPen;
 	}
 }

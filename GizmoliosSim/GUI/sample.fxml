@@ -14,7 +14,7 @@
    <bottom>
       <HBox prefHeight="96.0" prefWidth="900.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Pause/Play" textFill="WHITE">
+            <Button fx:id="Run" mnemonicParsing="false" onAction="#run" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Pause/Play" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
@@ -45,11 +45,11 @@
             </ComboBox>
             <HBox prefHeight="83.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="77.0" prefWidth="162.0" text="Maximum number &#10;of hours to simulate">
+                  <Label prefHeight="77.0" prefWidth="162.0" text="Maximum number &#10;of days to simulate">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField prefHeight="39.0" prefWidth="90.0">
+                  <TextField fx:id="numDays" prefHeight="39.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets left="10.0" top="25.0" />
                      </HBox.margin>
@@ -62,7 +62,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField prefHeight="39.0" prefWidth="90.0">
+                  <TextField fx:id="percentToGenerate" prefHeight="39.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -75,7 +75,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField prefHeight="40.0" prefWidth="90.0">
+                  <TextField fx:id="maxPenalty" prefHeight="40.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>
@@ -88,7 +88,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField prefHeight="39.0" prefWidth="90.0">
+                  <TextField fx:id="minPenalty" prefHeight="39.0" prefWidth="90.0">
                      <HBox.margin>
                         <Insets top="25.0" />
                      </HBox.margin>

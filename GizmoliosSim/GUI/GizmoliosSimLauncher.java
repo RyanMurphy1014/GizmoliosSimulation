@@ -24,6 +24,12 @@ import javafx.stage.Stage;
  */
 public class GizmoliosSimLauncher extends Application{
 	static Scanner scan = new Scanner(System.in);
+	
+	static int numDays;
+	static int percentToGenerate;
+	static int maxPenalty;
+	static int minPenalty;
+	
 	public static LinkedList<Order> list = new LinkedList<Order>();
 	Button button;
 	public static void main(String [] args) throws IOException{
@@ -31,16 +37,18 @@ public class GizmoliosSimLauncher extends Application{
 		String type;
 		int choice=0;
 		boolean loop=true;
-		
-		while(loop)
-		{
+		/*
+		while(loop){
 			menu();
 			choice=scan.nextInt();
 			
 			if(choice==1){
 				list.clear();
 				type="hpf";
-				GenerateOrder generator = new GenerateOrder(type);
+				
+				GenerateOrder generator = new GenerateOrder(type, contro);
+				setGeneratorValuesFromGUI(generator);
+				
 				mainLoop(generator);
 				for(int p=0;p<generator.getProcessed().size();p++)
 				{
@@ -51,6 +59,7 @@ public class GizmoliosSimLauncher extends Application{
 				list.clear();
 				type="spa";
 				GenerateOrder generator = new GenerateOrder(type);
+				setGeneratorValuesFromGUI(generator);
 				mainLoop(generator);
 				for(int p=0;p<generator.getProcessed().size();p++)
 				{
@@ -88,12 +97,13 @@ public class GizmoliosSimLauncher extends Application{
 				loop=false;
 				System.exit(0);
 			}
-			/*for(int i=0;i<list.size();i++)
+			for(int i=0;i<list.size();i++)
 			{
 				System.out.println(list.get(i).toStringF());
-			}*/
+			}
 			//System.out.println();
 		}
+		*/
 	}
 	public static void menu(){
 		
@@ -106,8 +116,8 @@ public class GizmoliosSimLauncher extends Application{
 		System.out.println("6.  Disconneting Database form simulation");
 		System.out.println("7.  Exit the simulation");
 	}
-	public static void mainLoop(GenerateOrder generator) {
-		while(generator.getCurrentDate().compareTo(LocalDate.now().plusDays(10)) < 0){
+	public static void mainLoop(GenerateOrder generator, int daysToRun) {
+		while(generator.getCurrentDate().compareTo(LocalDate.now().plusDays(daysToRun)) < 0){
 			generator.checkHourly();
 			System.out.println(generator);
 		}
@@ -123,15 +133,49 @@ public class GizmoliosSimLauncher extends Application{
 	 */
 	@Override
 	  public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+		Controller controller = loader.getController();
+        Parent root = loader.load();
         primaryStage.setTitle("Gizmolio Simulation");
         primaryStage.setScene(new Scene(root, 900, 600));
         primaryStage.show();
+        
+        
+        
+       
     }
-
+	
+	public static void setNumDays(int days) {
+		numDays = days;
+	}
+	
+	public static void setPercentToGenerate(int percent) {
+		percentToGenerate = percent;
+	}
+	
+	public static void setMaxPenalty(int maxPen) {
+		maxPenalty = maxPen;
+	}
+	
+	public static void setMinPenalty(int minPen) {
+		minPenalty = minPen;
+	}
+	
+	public static void setGeneratorValuesFromGUI(GenerateOrder generator) {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-
-
+	
 
 
 
