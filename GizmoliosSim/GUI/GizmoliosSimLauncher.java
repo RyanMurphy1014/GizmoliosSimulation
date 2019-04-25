@@ -116,14 +116,19 @@ public class GizmoliosSimLauncher extends Application{
 		System.out.println("6.  Disconneting Database form simulation");
 		System.out.println("7.  Exit the simulation");
 	}
+	
+	
+	
 	public static void mainLoop(GenerateOrder generator, int daysToRun) {
 		while(generator.getCurrentDate().compareTo(LocalDate.now().plusDays(daysToRun)) < 0){
 			generator.checkHourly();
 			System.out.println(generator);
+			
 		}
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("Orders Processed: " + generator.getOrdersProcessed());
 		System.out.println("Penalty: " + generator.getPenalty());
+		
 	}
 	
 	/*

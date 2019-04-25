@@ -1,6 +1,7 @@
 package Algorithm;
 import GUI.Controller;
 import GUI.GizmoliosSimLauncher;
+import GUI.InformationHandler;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -36,6 +37,7 @@ public class GenerateOrder {
 	private int MAX_PENALTY = 1;	
 	private int MIN_PENALTY = 1;
 	private final Gizmolios[] type = new Gizmolios[5];
+	
 	
 	/**
 	 * Creates generation object and creates first order.
@@ -86,9 +88,11 @@ public class GenerateOrder {
 	 */
 	public void checkHourly() {
 				
-		//if(rand.nextInt(100) <= CHANCE_TO_GENERATE) {
+		InformationHandler.setList(getProcessed());
+		
+		if(rand.nextInt(100) <= CHANCE_TO_GENERATE) {
 			generate();
-		//}
+		}
 		
 		//Sends new order to the machine
 		if(machine.isRunning() == false) {
