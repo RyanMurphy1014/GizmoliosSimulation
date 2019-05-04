@@ -14,14 +14,14 @@ public class DBUtilities {
     private static Scanner scan = new Scanner(System.in);
     private static int which;
 
-    public static Connection createConnection() {
+    public static Connection createConnection(String usern, String passw, String namedb) {
         
         System.out.println("What is the username for the database?");
-        String user = scan.nextLine();
+        String user = usern;
         System.out.println("What is the password?");
-        String pass = scan.nextLine();
+        String pass = passw;
         System.out.println("What is the name of the database?");
-        String name = scan.nextLine();
+        String name = namedb;
 
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/" + name;
@@ -53,7 +53,7 @@ public class DBUtilities {
 
     public static void checkConnect() {
         if (con == null) {
-            con = createConnection();
+            //con = createConnection();
         }
         if (stmt == null) {
             try {

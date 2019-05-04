@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1023.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="1030.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <bottom>
       <HBox prefHeight="96.0" prefWidth="900.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +20,7 @@
                   <Font size="28.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="467.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Send To Databse" textFill="WHITE">
+            <Button fx:id="sendToDatabse" mnemonicParsing="false" onAction="#dataBaseClick" prefHeight="160.0" prefWidth="467.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Send To Databse" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
@@ -96,23 +96,47 @@
                   </TextField>
                </children>
             </HBox>
-            <Slider fx:id="speedControl" onMouseDragEntered="#updateSpeed" prefHeight="21.0" prefWidth="212.0" scaleX="0.95" snapToTicks="true" />
-            <Label text="Speed Control" textFill="WHITE" translateX="95.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <Separator prefWidth="200.0" />
+            <HBox layoutX="10.0" layoutY="226.0" prefHeight="75.0" prefWidth="305.0">
                <children>
-                  <Label text="Hours To Simulate&#10; per Second" textFill="WHITE">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="hourPerSecond" text="Speed" textFill="WHITE">
+                  <Label prefHeight="75.0" prefWidth="101.0" text="Username" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="50.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
-                     <padding>
-                        <Insets top="15.0" />
-                     </padding>
                   </Label>
+                  <TextField fx:id="username" prefHeight="40.0" prefWidth="167.0">
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="301.0" prefHeight="80.0" prefWidth="305.0">
+               <children>
+                  <Label prefHeight="80.0" prefWidth="98.0" text="Password" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="password" prefHeight="39.0" prefWidth="169.0">
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="459.0" prefHeight="80.0" prefWidth="305.0">
+               <children>
+                  <Label prefHeight="80.0" prefWidth="97.0" text="DB Name" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="dbName" prefHeight="39.0" prefWidth="168.0">
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
             </HBox>
          </children>
@@ -133,7 +157,7 @@
                </font>
             </Label>
             <Label fx:id="currentOrd" layoutX="329.0" layoutY="47.0" prefHeight="49.0" prefWidth="221.0" text="No Current Orders" textFill="WHITE" />
-            <LineChart fx:id="graph" layoutX="-8.0" layoutY="286.0" prefHeight="275.0" prefWidth="722.0" styleClass="graph" stylesheets="@stylesheet.css">
+            <LineChart fx:id="graph" layoutX="-8.0" layoutY="286.0" prefHeight="320.0" prefWidth="722.0" styleClass="graph" stylesheets="@stylesheet.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -153,6 +177,11 @@
                </font>
             </Label>
             <Label fx:id="currentPenalty" layoutX="329.0" layoutY="147.0" prefHeight="49.0" prefWidth="221.0" text="No Penalties" textFill="WHITE" />
+            <Label fx:id="errorMsg" layoutX="322.0" layoutY="196.0" prefHeight="66.0" prefWidth="386.0" textFill="RED" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
    </center>
 </BorderPane>

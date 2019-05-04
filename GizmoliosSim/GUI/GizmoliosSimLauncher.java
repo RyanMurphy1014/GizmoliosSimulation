@@ -145,7 +145,7 @@ public class GizmoliosSimLauncher extends Application{
 		Controller controller = loader.getController();
         Parent root = loader.load();
         primaryStage.setTitle("Gizmolio Simulation");
-        primaryStage.setScene(new Scene(root, 1023, 653));
+        primaryStage.setScene(new Scene(root, 1030, 710));
         primaryStage.show();
         
         
@@ -172,7 +172,7 @@ public class GizmoliosSimLauncher extends Application{
 	public static void setGeneratorValuesFromGUI(GenerateOrder generator) {
 		
 	}
-	
+
 	
 	
 	

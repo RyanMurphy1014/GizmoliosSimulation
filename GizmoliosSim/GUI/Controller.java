@@ -27,9 +27,11 @@ import java.util.ResourceBundle;
 
 import Algorithm.GenerateOrder;
 import Algorithm.Order;
+import Database.DBUtilities;
 
 public class Controller implements Initializable {
 
+	public GenerateOrder generator;
 	public ComboBox<String> algorithms;
 
 	public TextField numDays;
@@ -48,10 +50,17 @@ public class Controller implements Initializable {
 	public Label currentOrd;
 
 	public Label currentPenalty;
-	
+
 	public LineChart<?, ?> graph;
+
+	public TextField username;
+	public TextField password;
+	public TextField dbName;
+
+	public Label errorMsg;
 	
 	public Button Run;
+	public Button sendToDatabse;
 	public Button exit;
 
 
@@ -61,7 +70,7 @@ public class Controller implements Initializable {
 		algorithms.getItems().addAll("Highest Penalty First", "Smart Penalty");
 
 
-
+		/*
 		speedControl.setMin(0);
 		speedControl.setMax(12);
 		speedControl.setValue(6);
@@ -69,12 +78,12 @@ public class Controller implements Initializable {
 		speedControl.setMajorTickUnit(1);
 		speedControl.setBlockIncrement(1);
 
-		/*
+
 		x.setLabel("Hours Passed");
 		y.setLabel("Penalty Amount");
 		graph.setTitle("Penalty Over Time");
-		*/
-		
+		 */
+
 		series = new XYChart.Series();
 		//series.getData().add(new XYChart.Data("1",2));
 		graph.getData().addAll(series);
@@ -82,10 +91,10 @@ public class Controller implements Initializable {
 		graph.getXAxis().setOpacity(0);
 		graph.setTitle("");
 		graph.setLegendVisible(false);
-		
-		
-		//System.out.println(numDays.getText());
 
+
+		//System.out.println(numDays.getText());
+		/*
 		hourPerSecond.textProperty().bind(
 				Bindings.format(
 						"%.0f hours per second",
@@ -93,7 +102,7 @@ public class Controller implements Initializable {
 						)
 				);
 
-
+		 */
 	}
 
 	public void updateSpeed() {
@@ -102,44 +111,50 @@ public class Controller implements Initializable {
 	}
 
 	public void run(){
-		/*
-		System.out.println("Max Penalty" + getMaxPenalty() + "\nMin Penalty" + getMinPenalty()
-		 + "\nPercent To Generate" + getPercentToGenerate());
-		 */
-		Run.setText("Running:");
-		
-		availableOrders.getItems().clear();
-		series.getData().clear();
-		GenerateOrder generator = new GenerateOrder(algorithms.getValue(),
-				Integer.parseInt(percentToGenerate.getText()), 
-				Integer.parseInt(maxPenalty.getText()), 
-				Integer.parseInt(minPenalty.getText()));
-		
-		while(generator.getCurrentDate().compareTo(LocalDate.now().plusDays(Integer.parseInt(numDays.getText()))) < 0){
-			generator.checkHourly();
-			
-			series.getData().add(new XYChart.Data(Integer.toString(generator.getHoursPassed()),generator.getPenalty()));
-			graph.getData().addAll(series);
-			
+		boolean readyToRun = true;
+		if(numDays.getText().isEmpty() || percentToGenerate.getText().isEmpty() ||
+				maxPenalty.getText().isEmpty() || minPenalty.getText().isEmpty()) {
+			readyToRun = false;
+			errorMsg.setText("Please fill in all parameters before running.");
+		}
+		if(readyToRun == true) {
+			readyToRun = false;
+			errorMsg.setText("");
+			Run.setText("Running:");
+
 			availableOrders.getItems().clear();
-			
-			currentPenalty.setText(Integer.toString(generator.getPenalty()));
-			
-			
-			if(generator.getMachine().isRunning() == true) {
-				currentOrd.setText(generator.getMachine().getCurrentOrder().toString());
-			}else {
-				currentOrd.setText("The machine is currently off.");
+			series.getData().clear();
+			generator = new GenerateOrder(algorithms.getValue(),
+					Integer.parseInt(percentToGenerate.getText()), 
+					Integer.parseInt(maxPenalty.getText()), 
+					Integer.parseInt(minPenalty.getText()));
+
+			while(generator.getCurrentDate().compareTo(LocalDate.now().plusDays(Integer.parseInt(numDays.getText()))) < 0){
+				generator.checkHourly();
+
+				series.getData().add(new XYChart.Data(Integer.toString(generator.getHoursPassed()),generator.getPenalty()));
+				graph.getData().addAll(series);
+
+				availableOrders.getItems().clear();
+
+				currentPenalty.setText(Integer.toString(generator.getPenalty()));
+
+
+				if(generator.getMachine().isRunning() == true) {
+					currentOrd.setText(generator.getMachine().getCurrentOrder().toString());
+				}else {
+					currentOrd.setText("The machine is currently off.");
+				}
+				availableOrders.getItems().addAll(generator.getOrders());
+				//System.out.println(generator);
+
 			}
-			availableOrders.getItems().addAll(generator.getOrders());
-			//System.out.println(generator);
+			//System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			//System.out.println("Orders Processed: " + generator.getOrdersProcessed());
+			//System.out.println("Penalty: " + generator.getPenalty());
+			Run.setText("Run");
 
 		}
-		//System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		//System.out.println("Orders Processed: " + generator.getOrdersProcessed());
-		//System.out.println("Penalty: " + generator.getPenalty());
-		Run.setText("Run");
-
 
 
 
@@ -150,6 +165,30 @@ public class Controller implements Initializable {
 
 	}
 
+
+	public void dataBaseClick() {
+		boolean readyToRun = true;
+		if(username.getText().isEmpty() || password.getText().isEmpty() || dbName.getText().isEmpty()) {
+			errorMsg.setText("Please fill in all parameters before trying to connect.");
+			readyToRun = false;
+		}
+		
+		if(readyToRun == true) {
+			readyToRun = false;
+			errorMsg.setText("");
+			DBUtilities.createConnection(username.getText(), password.getText(), dbName.getText());
+			DBUtilities.createTableOrder(true);	     
+			try
+			{
+				DBUtilities.storeOrder(generator.getOrders(), true);
+			}
+
+			catch(Exception e){
+				System.out.println("There is no data in memory to store");
+			}
+			DBUtilities.closeConnection();
+		}
+	}
 
 
 	public void exitClick() {
