@@ -1,5 +1,5 @@
 .sidebar{
-	-fx-background-color: #7289da;
+	-fx-background-color: #343e63;
 }
 
 .footbar{
@@ -14,3 +14,13 @@
 	-fx-background-color: #354051;
 	-fx-border-color: #000000;
 }
+
+.default-color0.chart-series-line {
+	-fx-stroke: #7289da;
+}
+.default-color0.chart-line-symbol { 
+	-fx-border-color: white;
+	-fx-background-color: #7289da;
+	-fx-shape: circle;
+}
+

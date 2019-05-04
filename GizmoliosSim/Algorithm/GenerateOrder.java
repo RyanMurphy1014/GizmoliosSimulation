@@ -1,7 +1,6 @@
 package Algorithm;
 import GUI.Controller;
 import GUI.GizmoliosSimLauncher;
-import GUI.InformationHandler;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,6 +23,7 @@ public class GenerateOrder {
 	private LinkedList<Order> orders = new LinkedList<Order>();
 	private LinkedList<Order> processed = new LinkedList<Order>();
 	
+	private int hoursPassed;
 	private String algorithm;
 	
 	private Random rand = new Random();
@@ -61,6 +61,7 @@ public class GenerateOrder {
 	
 	public GenerateOrder(String type, int chanceToGenerate, int maxPenalty, int minPenalty) {
 		penalty = 0;
+		hoursPassed = 0;
 		CHANCE_TO_GENERATE = chanceToGenerate;
 		MAX_PENALTY = maxPenalty;
 		MIN_PENALTY = minPenalty;
@@ -87,8 +88,7 @@ public class GenerateOrder {
 	 * 4.And increments the hours
 	 */
 	public void checkHourly() {
-				
-		InformationHandler.setList(getProcessed());
+		hoursPassed++;		
 		
 		if(rand.nextInt(100) <= CHANCE_TO_GENERATE) {
 			generate();
@@ -380,6 +380,10 @@ public class GenerateOrder {
 
 	public int getOrdersProcessed() {
 		return ordersProcessed;
+	}
+	
+	public int getHoursPassed() {
+		return hoursPassed;
 	}
 
 	public Machine getMachine() {

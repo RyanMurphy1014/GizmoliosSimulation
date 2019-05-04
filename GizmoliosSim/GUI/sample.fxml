@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.chart.*?>
 <?import de.jensd.fx.glyphs.*?>
 <?import javafx.scene.image.*?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1023.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <bottom>
       <HBox prefHeight="96.0" prefWidth="900.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
@@ -38,14 +39,14 @@
    <left>
       <VBox prefHeight="620.0" prefWidth="305.0" styleClass="sidebar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
-            <ComboBox fx:id="algorithms" prefHeight="60.0" prefWidth="326.0" promptText="Algorithm To Test" style="-fx-background-color: #6242f4;">
+            <ComboBox fx:id="algorithms" prefHeight="60.0" prefWidth="326.0" promptText="Algorithm To Test" style="-fx-background-color: #4b35ad;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </ComboBox>
             <HBox prefHeight="83.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="77.0" prefWidth="162.0" text="Maximum number &#10;of days to simulate">
+                  <Label prefHeight="77.0" prefWidth="162.0" text="Maximum number &#10;of days to simulate" textFill="#f2f2f2">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
@@ -58,7 +59,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="114.0" prefHeight="73.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="73.0" prefWidth="171.0" text="Percent to generate&#10;an order (per hour)&#10;">
+                  <Label prefHeight="73.0" prefWidth="171.0" text="Percent to generate&#10;an order (per hour)&#10;" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
@@ -71,7 +72,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="158.0" prefHeight="75.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="75.0" prefWidth="171.0" text="Maximum Penalty">
+                  <Label prefHeight="75.0" prefWidth="171.0" text="Maximum Penalty" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
@@ -84,7 +85,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="202.0" prefHeight="80.0" prefWidth="305.0">
                <children>
-                  <Label prefHeight="80.0" prefWidth="171.0" text="Minimum Penalty">
+                  <Label prefHeight="80.0" prefWidth="171.0" text="Minimum Penalty" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
@@ -95,16 +96,16 @@
                   </TextField>
                </children>
             </HBox>
-            <Slider fx:id="speedControl" onMouseDragEntered="#updateSpeed" snapToTicks="true" />
-            <Label text="Speed Control" translateX="95.0" />
+            <Slider fx:id="speedControl" onMouseDragEntered="#updateSpeed" prefHeight="21.0" prefWidth="212.0" scaleX="0.95" snapToTicks="true" />
+            <Label text="Speed Control" textFill="WHITE" translateX="95.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Hours To Simulate&#10; per Second">
+                  <Label text="Hours To Simulate&#10; per Second" textFill="WHITE">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="hourPerSecond" text="Speed">
+                  <Label fx:id="hourPerSecond" text="Speed" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
@@ -126,13 +127,13 @@
                </font>
             </Label>
             <ListView fx:id="availableOrders" layoutX="28.0" layoutY="52.0" prefHeight="189.0" prefWidth="285.0" style="-fx-background-color: #5d5963;" />
-            <Label layoutX="356.0" layoutY="13.0" text="Current Order" textFill="WHITE">
+            <Label layoutX="329.0" layoutY="13.0" text="Current Order" textFill="WHITE">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label fx:id="currentOrd" layoutX="329.0" layoutY="47.0" prefHeight="49.0" prefWidth="221.0" text="Current Order Goes Here" textFill="WHITE" />
-            <LineChart layoutX="18.0" layoutY="301.0" prefHeight="195.0" prefWidth="547.0">
+            <Label fx:id="currentOrd" layoutX="329.0" layoutY="47.0" prefHeight="49.0" prefWidth="221.0" text="No Current Orders" textFill="WHITE" />
+            <LineChart fx:id="graph" layoutX="-8.0" layoutY="286.0" prefHeight="275.0" prefWidth="722.0" styleClass="graph" stylesheets="@stylesheet.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -145,7 +146,13 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <Separator layoutX="5.0" layoutY="271.0" prefHeight="0.0" prefWidth="586.0" />
+            <Separator layoutX="5.0" layoutY="271.0" prefHeight="3.0" prefWidth="583.0" />
+            <Label layoutX="329.0" layoutY="127.0" text="Final Penalty" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentPenalty" layoutX="329.0" layoutY="147.0" prefHeight="49.0" prefWidth="221.0" text="No Penalties" textFill="WHITE" />
          </children></AnchorPane>
    </center>
 </BorderPane>
