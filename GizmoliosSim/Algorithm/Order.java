@@ -39,14 +39,16 @@ public class Order{
 		candy = new Gizmolios(type[i],this.time);
 	}
 	
-	public String toString() {
-		return this.candy.toString() + "," + this.customer.toString() +  
-				"," + this.iTR.toString();
-	}
+
 	
-	public String toStringF() {
+	public String toString() {
+		return "Gizmolio Type: " + this.candy.toString() + ", Customer: " + this.customer.toString() +
+				" , Time Requested: " + this.iTR.toString() + " Final Time Requested: " + this.fTR.toString() +
+				", Late Penalty: " + customer.getPenalty();
+		/*
 		return this.candy.toString() + "," + this.customer.toString() +  
 				"," + this.iTR.toString() + "," + this.fTR.toString() + "," + this.lastPenalty;
+		*/
 	}
 	
 	

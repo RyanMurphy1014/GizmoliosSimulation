@@ -15,7 +15,7 @@
    <bottom>
       <HBox prefHeight="96.0" prefWidth="900.0" styleClass="footbar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="Run" mnemonicParsing="false" onAction="#run" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Pause/Play" textFill="WHITE">
+            <Button fx:id="Run" mnemonicParsing="false" onAction="#run" prefHeight="160.0" prefWidth="385.0" styleClass="buttons" stylesheets="@stylesheet.css" text="Run" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
@@ -37,9 +37,9 @@
       </HBox>
    </bottom>
    <left>
-      <VBox prefHeight="620.0" prefWidth="305.0" styleClass="sidebar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="614.0" prefWidth="302.0" styleClass="sidebar" stylesheets="@stylesheet.css" BorderPane.alignment="CENTER">
          <children>
-            <ComboBox fx:id="algorithms" prefHeight="60.0" prefWidth="326.0" promptText="Algorithm To Test" style="-fx-background-color: #4b35ad;">
+            <ComboBox fx:id="algorithms" prefHeight="60.0" prefWidth="326.0" promptText="Algorithm To Test" style="-fx-background-color: #338cc6;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -156,7 +156,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label fx:id="currentOrd" layoutX="329.0" layoutY="47.0" prefHeight="49.0" prefWidth="221.0" text="No Current Orders" textFill="WHITE" />
+            <Label fx:id="currentOrd" alignment="TOP_LEFT" layoutX="329.0" layoutY="47.0" prefHeight="73.0" prefWidth="395.0" text="No Current Orders" textFill="WHITE" wrapText="true" />
             <LineChart fx:id="graph" layoutX="-8.0" layoutY="286.0" prefHeight="320.0" prefWidth="722.0" styleClass="graph" stylesheets="@stylesheet.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
@@ -170,14 +170,14 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <Separator layoutX="5.0" layoutY="271.0" prefHeight="3.0" prefWidth="583.0" />
+            <Separator layoutX="5.0" layoutY="260.0" prefHeight="14.0" prefWidth="719.0" />
             <Label layoutX="329.0" layoutY="127.0" text="Final Penalty" textFill="WHITE">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label fx:id="currentPenalty" layoutX="329.0" layoutY="147.0" prefHeight="49.0" prefWidth="221.0" text="No Penalties" textFill="WHITE" />
-            <Label fx:id="errorMsg" layoutX="322.0" layoutY="196.0" prefHeight="66.0" prefWidth="386.0" textFill="RED" wrapText="true">
+            <Label fx:id="currentPenalty" layoutX="329.0" layoutY="147.0" prefHeight="49.0" prefWidth="166.0" text="No Penalties" textFill="WHITE" />
+            <Label fx:id="errorMsg" layoutX="322.0" layoutY="189.0" prefHeight="66.0" prefWidth="386.0" textFill="RED" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>

@@ -27,7 +27,7 @@ public class Gizmolios {
 	
 	public String toString() {
 		
-		return this.type + "," + this.timeToMake;
+		return this.type + ", Hours To Make: " + this.timeToMake;
 	}
 
 	public Gizmolios(){

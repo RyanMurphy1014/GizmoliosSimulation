@@ -43,7 +43,7 @@ public class FileWriter {
 				out.println("ID,Gizmolios Type,Time(hrs),Customer Name,Late Penalty,Order Arrival,Requested,Start Processing,End Processing,Penalty");
 				for (int i = 0; i < nums.size(); i++) {
 					ID=i+1;
-					out.println("Order_"+ ID + "," + nums.get(i).toStringF());
+					out.println("Order_"+ ID + "," + nums.get(i).toString());
 				
 				}
 			} finally {

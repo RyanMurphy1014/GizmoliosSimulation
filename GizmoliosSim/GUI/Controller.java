@@ -69,7 +69,7 @@ public class Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		algorithms.getItems().addAll("Highest Penalty First", "Smart Penalty");
 
-
+	
 		/*
 		speedControl.setMin(0);
 		speedControl.setMax(12);
@@ -112,15 +112,27 @@ public class Controller implements Initializable {
 
 	public void run(){
 		boolean readyToRun = true;
+		if(algorithms.getValue() == null) {
+			readyToRun = false;
+			errorMsg.setText("Please select an algorithm to test.");
+		}
+		
 		if(numDays.getText().isEmpty() || percentToGenerate.getText().isEmpty() ||
 				maxPenalty.getText().isEmpty() || minPenalty.getText().isEmpty()) {
 			readyToRun = false;
 			errorMsg.setText("Please fill in all parameters before running.");
 		}
+		
+		if(Integer.parseInt(maxPenalty.getText()) < Integer.parseInt(minPenalty.getText())) {
+			readyToRun = false;
+			errorMsg.setText("The maximum penalty must be greater than the minimum.");
+		}
+		
+		
 		if(readyToRun == true) {
 			readyToRun = false;
 			errorMsg.setText("");
-			Run.setText("Running:");
+
 
 			availableOrders.getItems().clear();
 			series.getData().clear();
@@ -184,6 +196,7 @@ public class Controller implements Initializable {
 			}
 
 			catch(Exception e){
+				errorMsg.setText("There is no data in memory to store");
 				System.out.println("There is no data in memory to store");
 			}
 			DBUtilities.closeConnection();
